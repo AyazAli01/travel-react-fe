@@ -1,0 +1,47 @@
+import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom'
+import { MdOutlineStar } from "react-icons/md";
+import { IoLocationSharp } from "react-icons/io5";
+import destinationDetail from '../../data'
+
+const DestinationSliders = () => {
+
+  const [destinationData, setDestinationData] = useState(destinationDetail)
+
+  return (
+    <>
+      {
+        destinationData.slice(0, 3).map((data) => {
+          return (
+            <div className='col-lg-4 col-md-6 col-sm-12' key={data.id}>
+              <div className="d_service_cards">
+                <div className="imgbx">
+                  <img src={data.image} alt="" />
+                  <div className="box">
+                    <span className='rating'><MdOutlineStar />{data.rating} &nbsp;</span>
+                    <span className='country'><IoLocationSharp />{data.country}&nbsp;</span>
+                  </div>
+                </div>
+                <div className="contentbx">
+                  <div className="detail">
+                    <h3>{data.title}</h3>
+                    <p className='desc'>{data.desc}</p>
+                  </div>
+                  <div className="pricebx">
+                    <div className="bx">
+                      <small>Price</small>
+                      <p className='price'><span>Rs {data.price}.00</span>/person</p>
+                    </div>
+                    <Link className='serv_btn' to='#'>Order a Ticket</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        })
+      }
+    </>
+  )
+}
+
+export default DestinationSliders
